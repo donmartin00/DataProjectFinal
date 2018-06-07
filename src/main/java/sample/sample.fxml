@@ -17,7 +17,7 @@
     <rowConstraints>
         <RowConstraints />
     </rowConstraints>
-    <Pane prefHeight="1500.0" prefWidth="1570.0">
+    <Pane prefHeight="1500.0" prefWidth="1700.0">
         <Button fx:id="royB" layoutX="748.0" layoutY="22.0" mnemonicParsing="false" onAction="#printWhole" style="-fx-background-color: plum;" text="ROY GBIV">
             <textFill>
                 <RadialGradient centerX="0.8146067415730337" centerY="0.46634615384615385" cycleMethod="REPEAT" radius="0.5">
@@ -54,5 +54,8 @@
         <TextArea fx:id="count5" layoutX="909.0" layoutY="108.0" prefHeight="26.0" prefWidth="200.0" text="Count:" />
         <TextArea fx:id="count6" layoutX="1129.0" layoutY="108.0" prefHeight="19.0" prefWidth="200.0" text="Count:" />
         <TextArea fx:id="count7" layoutX="1346.0" layoutY="108.0" prefHeight="26.0" prefWidth="200.0" text="Count:" />
+      <Button fx:id="nameButton" layoutX="1568.0" layoutY="220.0" mnemonicParsing="false" onAction="#orderName" text="Sort by Name" />
+      <Button fx:id="companyButton" layoutX="1568.0" layoutY="314.0" mnemonicParsing="false" onAction="#orderCompany" text="Sort by Comp" />
+      <Button fx:id="dateButton" layoutX="1571.0" layoutY="417.0" mnemonicParsing="false" onAction="#orderDate" text="Sort by Date" />
     </Pane>
 </GridPane>

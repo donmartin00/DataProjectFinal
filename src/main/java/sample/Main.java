@@ -8,11 +8,12 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Data Project");
-        primaryStage.setScene(new Scene(root, 1570, 1500));
+        primaryStage.setScene(new Scene(root, 1700, 1500));
         primaryStage.show();
     }
 
@@ -21,7 +22,7 @@ public class Main extends Application {
 
 
         Data newData = new Data();
-        newData.sortText();
+        newData.importData();
 
         launch(args);
 

@@ -7,13 +7,14 @@ import java.util.Scanner;
 
 class Data
 {
-    ArrayList<String[]> red = new ArrayList<>();
-    ArrayList<String[]> orange = new ArrayList<>();
-    ArrayList<String[]> yellow = new ArrayList<>();
-    ArrayList<String[]> green = new ArrayList<>();
-    ArrayList<String[]> blue = new ArrayList<>();
-    ArrayList<String[]> indigo = new ArrayList<>();
-    ArrayList<String[]> violet = new ArrayList<>();
+
+    ArrayList<Person> red = new ArrayList<>();
+    ArrayList<Person> orange = new ArrayList<>();
+    ArrayList<Person> yellow = new ArrayList<>();
+    ArrayList<Person> green = new ArrayList<>();
+    ArrayList<Person> blue = new ArrayList<>();
+    ArrayList<Person> indigo = new ArrayList<>();
+    ArrayList<Person> violet = new ArrayList<>();
 
 
 
@@ -22,7 +23,7 @@ class Data
 
     //first method is to read the .txt file
     //sort the information blocks into lists
-    void sortText()
+    void importData()
     {
         try{
 
@@ -47,31 +48,37 @@ class Data
                 line = scan.nextLine();
                 String color = line.substring(6, line.length());
 
-                String[] details = {date, name, company, color};
+                Person newPerson =  sample.ImmutablePerson.builder()
+                        .date(date)
+                        .company(company)
+                        .name(name)
+                        .color(color)
+                        .build();
+
 
 
                 //color.toLowerCase();
                 switch (color) {
                     case "red":
-                        red.add(details);
+                        red.add(newPerson);
                         break;
                     case "orange":
-                        orange.add(details);
+                        orange.add(newPerson);
                         break;
                     case "yellow":
-                        yellow.add(details);
+                        yellow.add(newPerson);
                         break;
                     case "green":
-                        green.add(details);
+                        green.add(newPerson);
                         break;
                     case "blue":
-                        blue.add(details);
+                        blue.add(newPerson);
                         break;
                     case "indigo":
-                        indigo.add(details);
+                        indigo.add(newPerson);
                         break;
                     case "violet":
-                        violet.add(details);
+                        violet.add(newPerson);
                         break;
                 }
 
