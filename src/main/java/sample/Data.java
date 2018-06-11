@@ -1,8 +1,18 @@
 package sample;
 
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeComparator;
+import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 class Data
@@ -41,6 +51,12 @@ class Data
                 }
 
                 String date = line.substring(5, line.length());
+                String startDate = (line.substring(5,7) + "-" + line.substring(8,10) + "-" + line.substring(11,13));
+
+                DateTimeFormatter formatter = DateTimeFormat.forPattern("MM-dd-yy");
+                LocalDate dt = formatter.parseLocalDate(startDate);
+                //DateTimeComparator comparator =  new DateTimeComparator;
+
                 line = scan.nextLine();
                 String name = line.substring(5, line.length());
                 line = scan.nextLine();
@@ -49,7 +65,7 @@ class Data
                 String color = line.substring(6, line.length());
 
                 Person newPerson =  sample.ImmutablePerson.builder()
-                        .date(date)
+                        .date(dt)
                         .company(company)
                         .name(name)
                         .color(color)
@@ -96,88 +112,6 @@ class Data
 
 
 
-
-
-    //Next we need to print the ArrayLists
-
-    /*
-      public void printRed()
-    {
-        for(int i = 0; i < red.size(); i++)
-        {
-            System.out.println("Date: " + red.get(i)[0]);
-            System.out.println("Name: " + red.get(i)[1]);
-            System.out.println("Company: " + red.get(i)[2]);
-            System.out.println("Color: " + red.get(i)[3]);
-        }
-    }
-     */
-
-    /*public void printOrange()
-    {
-        for(int i = 0; i < orange.size(); i++)
-        {
-            System.out.println("Date: " + orange.get(i)[0]);
-            System.out.println("Name: " + orange.get(i)[1]);
-            System.out.println("Company: " + orange.get(i)[2]);
-            System.out.println("Color: " + orange.get(i)[3]);
-        }
-    }**/
-
-    /*public void printYellow()
-    {
-        for(int i = 0; i < yellow.size(); i++)
-        {
-            System.out.println("Date: " + orange.get(i)[0]);
-            System.out.println("Name: " + orange.get(i)[1]);
-            System.out.println("Company: " + orange.get(i)[2]);
-            System.out.println("Color: " + orange.get(i)[3]);
-        }
-    }**/
-
-    /*public void printGreen()
-    {
-        for(int i = 0; i < green.size(); i++)
-        {
-            System.out.println("Date: " + orange.get(i)[0]);
-            System.out.println("Name: " + orange.get(i)[1]);
-            System.out.println("Company: " + orange.get(i)[2]);
-            System.out.println("Color: " + orange.get(i)[3]);
-        }
-    }**/
-
-    /*public void printBlue()
-    {
-        for(int i = 0; i < blue.size(); i++)
-        {
-            System.out.println("Date: " + blue.get(i)[0]);
-            System.out.println("Name: " + blue.get(i)[1]);
-            System.out.println("Company: " + blue.get(i)[2]);
-            System.out.println("Color: " + blue.get(i)[3]);
-        }
-    }**/
-
-    /*public void printIndigo()
-    {
-        for(int i = 0; i < indigo.size(); i++)
-        {
-            System.out.println("Date: " + indigo.get(i)[0]);
-            System.out.println("Name: " + indigo.get(i)[1]);
-            System.out.println("Company: " + indigo.get(i)[2]);
-            System.out.println("Color: " + indigo.get(i)[3]);
-        }
-    }**/
-
-    /*public void printVoilet()
-    {
-        for(int i = 0; i < violet.size(); i++)
-        {
-            System.out.println("Date: " + violet.get(i)[0]);
-            System.out.println("Name: " + violet.get(i)[1]);
-            System.out.println("Company: " + violet.get(i)[2]);
-            System.out.println("Color: " + violet.get(i)[3]);
-        }
-    }**/
 
 
 

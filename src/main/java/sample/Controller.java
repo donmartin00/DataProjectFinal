@@ -5,10 +5,13 @@ import javafx.scene.control.Button;
 
 import javafx.scene.control.TextArea;
 import javafx.fxml.FXML;
+import org.joda.time.DateTimeComparator;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+
 
 public class Controller
 {
@@ -85,6 +88,14 @@ public class Controller
     public void initialize()
     {
         textArea.setWrapText(true);
+        textArea2.setWrapText(true);
+        textArea3.setWrapText(true);
+        textArea4.setWrapText(true);
+        textArea5.setWrapText(true);
+        textArea6.setWrapText(true);
+        textArea7.setWrapText(true);
+
+
     }
 
 
@@ -112,9 +123,9 @@ public class Controller
 
 
 
-    private boolean nameBool = false;
-    private boolean companyBool = false;
-    private boolean dateBool = false;
+    private boolean nameBool ;
+    private boolean companyBool;
+    private boolean dateBool;
     private boolean redBool = false;
     private boolean orangeBool = false;
     private boolean yellowBool = false;
@@ -133,56 +144,72 @@ public class Controller
         newData.importData();
 
         StringBuilder temp = new StringBuilder();
-        StringBuilder temp2 = new StringBuilder();
-        StringBuilder temp3 = new StringBuilder();
-        StringBuilder temp4 = new StringBuilder();
-        StringBuilder temp5 = new StringBuilder();
-        StringBuilder temp6 = new StringBuilder();
-        StringBuilder temp7 = new StringBuilder();
-
-
 
         textArea.setStyle("-fx-text-inner-color: red;");
         count.setText("Count: " + newData.red.size());
 
             populate(newData.red, temp);
 
+            textArea.setText(temp.toString());
+            temp.setLength(0);
 
 
         textArea2.setStyle("-fx-text-inner-color: orange;");
         count2.setText("Count: " + newData.orange.size());
 
-            populate(newData.orange, temp2);
+            populate(newData.orange, temp);
+
+            textArea2.setText(temp.toString());
+            temp.setLength(0);
+
 
 
         textArea3.setStyle("-fx-text-inner-color: yellow;");
         count3.setText("Count: " + newData.yellow.size());
 
-            populate(newData.yellow, temp3);
+            populate(newData.yellow, temp);
+            textArea3.setText(temp.toString());
+            temp.setLength(0);
+
 
 
         textArea4.setStyle("-fx-text-inner-color: green;");
         count4.setText("Count: " + newData.green.size());
 
-            populate(newData.green, temp4);
+            populate(newData.green, temp);
+
+            textArea4.setText(temp.toString());
+            temp.setLength(0);
+
 
 
         textArea5.setStyle("-fx-text-inner-color: blue");
         count5.setText("Count: " + newData.blue.size());
 
-            populate(newData.blue, temp5);
+            populate(newData.blue, temp);
+
+            textArea5.setText(temp.toString());
+            temp.setLength(0);
+
 
 
         textArea6.setStyle("-fx-text-inner-color: indigo;");
         count6.setText("Count: " + newData.indigo.size());
 
-            populate(newData.indigo, temp6);
+            populate(newData.indigo, temp);
+
+            textArea6.setText(temp.toString());
+            temp.setLength(0);
+
 
 
         textArea7.setStyle("-fx-text-inner-color: violet;");
         count7.setText("Count: " + newData.violet.size());
 
-            populate(newData.violet, temp7);
+            populate(newData.violet, temp);
+            textArea7.setText(temp.toString());
+
+
 
         redBool = true;
         orangeBool = true;
@@ -191,17 +218,6 @@ public class Controller
         blueBool = true;
         indigoBool = true;
         violetBool = true;
-
-        textArea.setText(temp.toString());
-        textArea2.setText(temp2.toString());
-        textArea3.setText(temp3.toString());
-        textArea4.setText(temp4.toString());
-        textArea5.setText(temp5.toString());
-        textArea6.setText(temp6.toString());
-        textArea7.setText(temp7.toString());
-
-
-
 
 
     }
@@ -220,37 +236,9 @@ public class Controller
 
     private void sortDate(List<Person> color)
     {
-        for(int i = 0; i < color.size(); i++)
+        for (int i = 0; i < color.size(); i++)
         {
-            for(int j = 0; j < color.size()-1; j++)
-            {
-                if(Integer.parseInt(color.get(j).date().substring(6,8)) > Integer.parseInt(color.get(j+1).date().substring(6,8)) )
-                {
-                    Collections.swap(color, j, j+1);
-                }
-                else if(Integer.parseInt(color.get(j).date().substring(6,8)) < Integer.parseInt(color.get(j+1).date().substring(6,8)) )
-                {
-
-                }
-                else if(Integer.parseInt(color.get(j).date().substring(0,2)) > Integer.parseInt(color.get(j+1).date().substring(0,2)) )
-                {
-                    Collections.swap(color, j, j+1);
-                }
-                else if(Integer.parseInt(color.get(j).date().substring(0,2)) < Integer.parseInt(color.get(j+1).date().substring(0,2)) )
-                {
-
-                }
-                else if (Integer.parseInt(color.get(j).date().substring(3,5)) > Integer.parseInt(color.get(j+1).date().substring(3,5)) )
-                {
-                    Collections.swap(color, j, j+1);
-
-                }
-                else if (Integer.parseInt(color.get(j).date().substring(3,5)) < Integer.parseInt(color.get(j+1).date().substring(3,5)) )
-                {
-
-
-                }
-            }
+            Collections.sort(color, Comparator.comparing(Person::date));
         }
     }
 
@@ -449,64 +437,17 @@ public class Controller
     {
 
         if(nameBool) {
-            if (redBool) {
-                redBool = false;
-                printRed();
-            }
-            if (orangeBool) {
-                orangeBool = false;
-                printOrange();
-            }
-            if (yellowBool) {
-                yellowBool = false;
-                printYellow();
-            }
-            if (greenBool) {
-                greenBool = false;
-                printGreen();
-            }
-            if (blueBool) {
-                blueBool = false;
-                printBlue();
-            }
-            if (indigoBool) {
-                indigoBool = false;
-                printIndigo();
-            }
-            if (violetBool) {
-                violetBool = false;
-                printVoilet();
-            }
+            printColors();
             nameBool = false;
-            companyBool = false;
-            dateBool = false;
+            companyBool = true;
+            dateBool = true;
         }
         else if(!nameBool)
         {
-            if (redBool) {
-                printOrderedRed();
-            }
-            if (orangeBool) {
-                printOrderedOrange();
-            }
-            if (yellowBool) {
-                printOrderedYellow();
-            }
-            if (greenBool) {
-                printOrderedGreen();;
-            }
-            if (blueBool) {
-                printOrderedBlue();
-            }
-            if (indigoBool) {
-                printOrderedIndigo();
-            }
-            if (violetBool) {
-                printOrderedViolet();
-            }
+            printOrderedColors();
             nameBool = true;
-            //companyBool = false;
-            //dateBool = false;
+            companyBool = false;
+            dateBool = false;
         }
 
 
@@ -516,61 +457,14 @@ public class Controller
     public void orderCompany()
     {
         if(companyBool){
-            if (redBool) {
-                redBool = false;
-                printRed();
-            }
-            if (orangeBool) {
-                orangeBool = false;
-                printOrange();
-            }
-            if (yellowBool) {
-                yellowBool = false;
-                printYellow();
-            }
-            if (greenBool) {
-                greenBool = false;
-                printGreen();
-            }
-            if (blueBool) {
-                blueBool = false;
-                printBlue();
-            }
-            if (indigoBool) {
-                indigoBool = false;
-                printIndigo();
-            }
-            if (violetBool) {
-                violetBool = false;
-                printVoilet();
-            }
-        //nameBool = false;
+            printColors();
+        nameBool = true;
         companyBool = false;
-        //dateBool = false;
+        dateBool = true;
         }
         else if(companyBool == false)
         {
-            if (redBool) {
-                printOrderedRed();
-            }
-            if (orangeBool) {
-                printOrderedOrange();
-            }
-            if (yellowBool) {
-                printOrderedYellow();
-            }
-            if (greenBool) {
-                printOrderedGreen();;
-            }
-            if (blueBool) {
-                printOrderedBlue();
-            }
-            if (indigoBool) {
-                printOrderedIndigo();
-            }
-            if (violetBool) {
-                printOrderedViolet();
-            }
+            printOrderedColors();
         nameBool = false;
         companyBool = true;
         dateBool = false;
@@ -579,69 +473,52 @@ public class Controller
 
     }
 
+    private void printColors() {
+        if (redBool) {
+            redBool = false;
+            printRed();
+        }
+        if (orangeBool) {
+            orangeBool = false;
+            printOrange();
+        }
+        if (yellowBool) {
+            yellowBool = false;
+            printYellow();
+        }
+        if (greenBool) {
+            greenBool = false;
+            printGreen();
+        }
+        if (blueBool) {
+            blueBool = false;
+            printBlue();
+        }
+        if (indigoBool) {
+            indigoBool = false;
+            printIndigo();
+        }
+        if (violetBool) {
+            violetBool = false;
+            printVoilet();
+        }
+    }
 
 
     @FXML
     public void orderDate()
     {
         if(dateBool) {
-            if (redBool) {
-                redBool = false;
-                printRed();
-            }
-            if (orangeBool) {
-                orangeBool = false;
-                printOrange();
-            }
-            if (yellowBool) {
-                yellowBool = false;
-                printYellow();
-            }
-            if (greenBool) {
-                greenBool = false;
-                printGreen();
-            }
-            if (blueBool) {
-                blueBool = false;
-                printBlue();
-            }
-            if (indigoBool) {
-                indigoBool = false;
-                printIndigo();
-            }
-            if (violetBool) {
-                violetBool = false;
-                printVoilet();
-            }
+            printColors();
 
-            //nameBool = false;
-            //companyBool = false;
+            nameBool = true;
+            companyBool = true;
             dateBool = false;
 
         }
         else if(!dateBool)
         {
-            if (redBool) {
-                printOrderedRed();
-            }
-            if (orangeBool) {
-                printOrderedOrange();
-            }
-            if (yellowBool) {
-                printOrderedYellow();
-            }
-            if (greenBool) {
-                printOrderedGreen();;
-            }
-            if (blueBool) {
-                printOrderedBlue();
-            }
-            if (indigoBool) {
-                printOrderedIndigo();
-            }
-            if (violetBool) {
-                printOrderedViolet();
-            }
+            printOrderedColors();
             nameBool = false;
             companyBool = false;
             dateBool = true;
@@ -649,10 +526,29 @@ public class Controller
 
     }
 
-
-
-
-
+    private void printOrderedColors() {
+        if (redBool) {
+            printOrderedRed();
+        }
+        if (orangeBool) {
+            printOrderedOrange();
+        }
+        if (yellowBool) {
+            printOrderedYellow();
+        }
+        if (greenBool) {
+            printOrderedGreen();;
+        }
+        if (blueBool) {
+            printOrderedBlue();
+        }
+        if (indigoBool) {
+            printOrderedIndigo();
+        }
+        if (violetBool) {
+            printOrderedViolet();
+        }
+    }
 
 
     private void printOrderedRed()
@@ -660,21 +556,7 @@ public class Controller
         Data newData = new Data();
         newData.importData();
         StringBuilder temp = new StringBuilder();
-        if(!nameBool)
-        {
-            sortName(newData.red);
-
-        }
-        else if(!companyBool)
-        {
-            sortCompany(newData.red);
-
-        }
-        else if(!dateBool)
-        {
-            sortDate(newData.red);
-
-        }
+        checkSortBools(newData.red);
         textArea.setStyle("-fx-text-inner-color: red;");
         count.setText("Count: " + newData.red.size());
 
@@ -685,26 +567,32 @@ public class Controller
 
     }
 
+    private void checkSortBools(List<Person> color) {
+
+        if(!nameBool && companyBool && dateBool)
+        {
+            sortName(color);
+
+        }
+        else if(!companyBool &&nameBool &&dateBool)
+        {
+            sortCompany(color);
+
+        }
+        else if(!dateBool &&nameBool && companyBool)
+        {
+            sortDate(color);
+
+        }
+    }
+
     private void printOrderedOrange()
     {
         Data newData = new Data();
         newData.importData();
         StringBuilder temp = new StringBuilder();
-        if(!nameBool)
-        {
-            sortName(newData.orange);
+        checkSortBools(newData.orange);
 
-        }
-        else if(!companyBool)
-        {
-            sortCompany(newData.orange);
-
-        }
-        else if(!dateBool)
-        {
-            sortDate(newData.orange);
-
-        }
         textArea2.setStyle("-fx-text-inner-color: orange;");
         count.setText("Count: " + newData.orange.size());
 
@@ -721,21 +609,8 @@ public class Controller
         Data newData = new Data();
         newData.importData();
         StringBuilder temp = new StringBuilder();
-        if(!nameBool)
-        {
-            sortName(newData.yellow);
+        checkSortBools(newData.yellow);
 
-        }
-        else if(!companyBool)
-        {
-            sortCompany(newData.yellow);
-
-        }
-        else if(!dateBool)
-        {
-            sortDate(newData.yellow);
-
-        }
         textArea3.setStyle("-fx-text-inner-color: yellow;");
         count.setText("Count: " + newData.yellow.size());
 
@@ -753,21 +628,8 @@ public class Controller
         Data newData = new Data();
         newData.importData();
         StringBuilder temp = new StringBuilder();
-        if(!nameBool)
-        {
-            sortName(newData.green);
+        checkSortBools(newData.green);
 
-        }
-        else if(!companyBool)
-        {
-            sortCompany(newData.green);
-
-        }
-        else if(!dateBool)
-        {
-            sortDate(newData.green);
-
-        }
         textArea4.setStyle("-fx-text-inner-color: green;");
         count.setText("Count: " + newData.green.size());
 
@@ -786,21 +648,8 @@ public class Controller
         Data newData = new Data();
         newData.importData();
         StringBuilder temp = new StringBuilder();
-        if(!nameBool)
-        {
-            sortName(newData.blue);
+        checkSortBools(newData.blue);
 
-        }
-        else if(!companyBool)
-        {
-            sortCompany(newData.blue);
-
-        }
-        else if(!dateBool)
-        {
-            sortDate(newData.blue);
-
-        }
         textArea5.setStyle("-fx-text-inner-color: blue;");
         count.setText("Count: " + newData.blue.size());
 
@@ -819,21 +668,8 @@ public class Controller
         Data newData = new Data();
         newData.importData();
         StringBuilder temp = new StringBuilder();
-        if(!nameBool)
-        {
-            sortName(newData.indigo);
+        checkSortBools(newData.indigo);
 
-        }
-        else if(!companyBool)
-        {
-            sortCompany(newData.indigo);
-
-        }
-        else if(!dateBool)
-        {
-            sortDate(newData.indigo);
-
-        }
         textArea6.setStyle("-fx-text-inner-color: indigo;");
         count.setText("Count: " + newData.indigo.size());
 
@@ -851,21 +687,8 @@ public class Controller
         Data newData = new Data();
         newData.importData();
         StringBuilder temp = new StringBuilder();
-        if(!nameBool)
-        {
-            sortName(newData.violet);
+        checkSortBools(newData.violet);
 
-        }
-        else if(!companyBool)
-        {
-            sortCompany(newData.violet);
-
-        }
-        else if(!dateBool)
-        {
-            sortDate(newData.violet);
-
-        }
         textArea7.setStyle("-fx-text-inner-color: violet;");
         count7.setText("Count: " + newData.violet.size());
 
