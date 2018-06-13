@@ -19,12 +19,6 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-
-
-        Data newData = new Data();
-        newData.importData();
-
         launch(args);
-
     }
 }
