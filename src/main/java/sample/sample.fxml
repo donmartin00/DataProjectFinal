@@ -30,7 +30,7 @@
             </textFill>
         </Button>
         <Button fx:id="redB" layoutX="106.0" layoutY="76.0" mnemonicParsing="false" onAction="#printRed" style="-fx-background-color: red;" text="Red" textFill="WHITE" />
-        <Button fx:id="orangeB" layoutX="315.0" layoutY="76.0" mnemonicParsing="false" onAction="#printOrange" style="-fx-background-color: orange;" text="Orange" textFill="WHITE" />
+        <Button fx:id="orangeB" layoutX="315.0" layoutY="76.0" mnemonicParsing="false" onAction="#toggleOrange" style="-fx-background-color: orange;" text="Orange" textFill="WHITE" />
         <Button fx:id="yellowB" layoutX="538.0" layoutY="76.0" mnemonicParsing="false" onAction="#printYellow" style="-fx-background-color: yellow;" text="Yellow" textFill="WHITE" />
         <Button fx:id="greenB" layoutX="760.0" layoutY="76.0" mnemonicParsing="false" onAction="#printGreen" style="-fx-background-color: green;" text="Green" textFill="WHITE" />
         <Button fx:id="blueB" layoutX="986.0" layoutY="76.0" mnemonicParsing="false" onAction="#printBlue" style="-fx-background-color: blue;" text="Blue" textFill="WHITE" />

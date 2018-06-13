@@ -1,12 +1,11 @@
 package sample;
 
-
 import javafx.scene.control.Button;
-
 import javafx.scene.control.TextArea;
 import javafx.fxml.FXML;
-import org.joda.time.DateTimeComparator;
 
+
+import java.io.File;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -234,6 +233,7 @@ public class Controller
         }
     }
 
+
     private void sortDate(List<Person> color)
     {
         for (int i = 0; i < color.size(); i++)
@@ -282,7 +282,7 @@ public class Controller
     }
 
     @FXML
-    public void printOrange()
+    public void toggleOrange()
     {
         textArea2.clear();
         Data newData = new Data();
@@ -436,18 +436,18 @@ public class Controller
     public void orderName()
     {
 
-        if(nameBool) {
-            printColors();
-            nameBool = false;
-            companyBool = true;
-            dateBool = true;
-        }
-        else if(!nameBool)
-        {
+        if(!nameBool) {
             printOrderedColors();
             nameBool = true;
             companyBool = false;
             dateBool = false;
+        }
+        else if(nameBool)
+        {
+            printColors();
+            nameBool = false;
+            //companyBool = false;
+            //dateBool = false;
         }
 
 
@@ -456,18 +456,18 @@ public class Controller
     @FXML
     public void orderCompany()
     {
-        if(companyBool){
-            printColors();
-        nameBool = true;
-        companyBool = false;
-        dateBool = true;
-        }
-        else if(companyBool == false)
-        {
+        if(!companyBool){
             printOrderedColors();
         nameBool = false;
         companyBool = true;
         dateBool = false;
+        }
+        else if(companyBool)
+        {
+            printColors();
+        //nameBool = false;
+        companyBool = false;
+        //dateBool = false;
         }
 
 
@@ -480,7 +480,7 @@ public class Controller
         }
         if (orangeBool) {
             orangeBool = false;
-            printOrange();
+            toggleOrange();
         }
         if (yellowBool) {
             yellowBool = false;
@@ -508,20 +508,20 @@ public class Controller
     @FXML
     public void orderDate()
     {
-        if(dateBool) {
-            printColors();
-
-            nameBool = true;
-            companyBool = true;
-            dateBool = false;
-
-        }
-        else if(!dateBool)
-        {
+        if(!dateBool) {
             printOrderedColors();
+
             nameBool = false;
             companyBool = false;
             dateBool = true;
+
+        }
+        else if(dateBool)
+        {
+            printColors();
+            //nameBool = false;
+            //companyBool = false;
+            dateBool = false;
         }
 
     }
@@ -537,7 +537,7 @@ public class Controller
             printOrderedYellow();
         }
         if (greenBool) {
-            printOrderedGreen();;
+            printOrderedGreen();
         }
         if (blueBool) {
             printOrderedBlue();
@@ -569,17 +569,17 @@ public class Controller
 
     private void checkSortBools(List<Person> color) {
 
-        if(!nameBool && companyBool && dateBool)
+        if(!nameBool )
         {
             sortName(color);
 
         }
-        else if(!companyBool &&nameBool &&dateBool)
+        else if(!companyBool)
         {
             sortCompany(color);
 
         }
-        else if(!dateBool &&nameBool && companyBool)
+        else if(!dateBool)
         {
             sortDate(color);
 
