@@ -1,18 +1,10 @@
 package sample;
-
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeComparator;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
 class Data
@@ -28,95 +20,90 @@ class Data
 
 
 
+    public static Data importData()
+    {
+        Scanner scan = null;
+        try {
+            scan = new Scanner(new File("pleaseWork.txt"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return parseData(scan);
 
+    }
 
 
     //first method is to read the .txt file
     //sort the information blocks into lists
-    void importData()
+    public static Data importData(File file) throws FileNotFoundException
     {
-        try{
+        Scanner scan = new Scanner(file);
+        return parseData(scan);
 
-            File file = new File("pleaseWork.txt");
+    }
 
-            Scanner scan = new Scanner(file);
+    static Data parseData(Scanner scan) {
+        Data  result = new Data();
+        while(scan.hasNextLine())
+        {
+            String line = scan.nextLine();
 
-            while(scan.hasNextLine())
+            if(line.isEmpty())
             {
-                String line = scan.nextLine();
-
-                if(line.isEmpty())
-                {
-                    line = scan.nextLine();
-                }
-
-                String date = line.substring(5, line.length());
-                String startDate = (line.substring(5,7) + "-" + line.substring(8,10) + "-" + line.substring(11,13));
-
-                DateTimeFormatter formatter = DateTimeFormat.forPattern("MM-dd-yy");
-                LocalDate dt = formatter.parseLocalDate(startDate);
-                //DateTimeComparator comparator =  new DateTimeComparator;
-
                 line = scan.nextLine();
-                String name = line.substring(5, line.length());
-                line = scan.nextLine();
-                String company = line.substring(8, line.length());
-                line = scan.nextLine();
-                String color = line.substring(6, line.length());
-
-                Person newPerson =  sample.ImmutablePerson.builder()
-                        .date(dt)
-                        .company(company)
-                        .name(name)
-                        .color(color)
-                        .build();
-
-
-
-                //color.toLowerCase();
-                switch (color) {
-                    case "red":
-                        red.add(newPerson);
-                        break;
-                    case "orange":
-                        orange.add(newPerson);
-                        break;
-                    case "yellow":
-                        yellow.add(newPerson);
-                        break;
-                    case "green":
-                        green.add(newPerson);
-                        break;
-                    case "blue":
-                        blue.add(newPerson);
-                        break;
-                    case "indigo":
-                        indigo.add(newPerson);
-                        break;
-                    case "violet":
-                        violet.add(newPerson);
-                        break;
-                }
-
-
-
             }
 
 
+            LocalDate dt = getLocalDate(line);
 
+            line = scan.nextLine();
+            String name = line.substring(5, line.length());
+            line = scan.nextLine();
+            String company = line.substring(8, line.length());
+            line = scan.nextLine();
+            String color = line.substring(6, line.length());
+
+            Person newPerson =  sample.ImmutablePerson.builder()
+                    .date(dt)
+                    .company(company)
+                    .name(name)
+                    .color(color)
+                    .build();
+
+
+            switch (color) {
+                case "red":
+                    result.red.add(newPerson);
+                    break;
+                case "orange":
+                    result.orange.add(newPerson);
+                    break;
+                case "yellow":
+                    result.yellow.add(newPerson);
+                    break;
+                case "green":
+                    result.green.add(newPerson);
+                    break;
+                case "blue":
+                    result.blue.add(newPerson);
+                    break;
+                case "indigo":
+                    result.indigo.add(newPerson);
+                    break;
+                case "violet":
+                    result.violet.add(newPerson);
+                    break;
+            }
         }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        return result;
     }
 
+    static LocalDate getLocalDate(String line) {
+        String startDate =line.split(":")[1];
 
-
-
-
-
-
-
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("MM.dd.yy");
+        return formatter.parseLocalDate(startDate);
+    }
 
 
 }
