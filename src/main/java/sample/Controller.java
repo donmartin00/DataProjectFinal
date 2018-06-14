@@ -113,178 +113,79 @@ public class Controller {
     }
 
 
-    private boolean redBool = false;
-    private boolean orangeBool = false;
-    private boolean yellowBool = false;
-    private boolean greenBool = false;
-    private boolean blueBool = false;
-    private boolean indigoBool = false;
-    private boolean violetBool = false;
-
-
     @FXML
-    public void printWhole() {
+    public void printWhole()
+    {
         clearAll();
-
-        StringBuilder temp = new StringBuilder();
-
-        textArea.setStyle("-fx-text-inner-color: red;");
-        count.setText("Count: " + data.red.size());
-
-        populate(data.red, temp);
-
-        textArea.setText(temp.toString());
-        temp.setLength(0);
-
-
-        textArea2.setStyle("-fx-text-inner-color: orange;");
-        count2.setText("Count: " + data.orange.size());
-
-        populate(data.orange, temp);
-
-        textArea2.setText(temp.toString());
-        temp.setLength(0);
-
-
-        textArea3.setStyle("-fx-text-inner-color: yellow;");
-        count3.setText("Count: " + data.yellow.size());
-
-        populate(data.yellow, temp);
-        textArea3.setText(temp.toString());
-        temp.setLength(0);
-
-
-        textArea4.setStyle("-fx-text-inner-color: green;");
-        count4.setText("Count: " + data.green.size());
-
-        populate(data.green, temp);
-
-        textArea4.setText(temp.toString());
-        temp.setLength(0);
-
-
-        textArea5.setStyle("-fx-text-inner-color: blue");
-        count5.setText("Count: " + data.blue.size());
-
-        populate(data.blue, temp);
-
-        textArea5.setText(temp.toString());
-        temp.setLength(0);
-
-
-        textArea6.setStyle("-fx-text-inner-color: indigo;");
-        count6.setText("Count: " + data.indigo.size());
-
-        populate(data.indigo, temp);
-
-        textArea6.setText(temp.toString());
-        temp.setLength(0);
-
-
-        textArea7.setStyle("-fx-text-inner-color: violet;");
-        count7.setText("Count: " + data.violet.size());
-
-        populate(data.violet, temp);
-        textArea7.setText(temp.toString());
-
-
-        redBool = true;
-        orangeBool = true;
-        yellowBool = true;
-        greenBool = true;
-        blueBool = true;
-        indigoBool = true;
-        violetBool = true;
-
-
+        printAllColors();
     }
 
-    private void sortName() {
+    private void sortName()
+    {
         data.red.sort(Comparator.comparing(Person::name));
-
         data.orange.sort(Comparator.comparing(Person::name));
-
         data.yellow.sort(Comparator.comparing(Person::name));
-
         data.green.sort(Comparator.comparing(Person::name));
-
         data.blue.sort(Comparator.comparing(Person::name));
-
         data.indigo.sort(Comparator.comparing(Person::name));
-
         data.violet.sort(Comparator.comparing(Person::name));
-
     }
 
-    private void sortCompany() {
+    private void sortCompany()
+    {
         data.red.sort(Comparator.comparing(Person::company));
-
         data.orange.sort(Comparator.comparing(Person::company));
-
         data.yellow.sort(Comparator.comparing(Person::company));
-
         data.green.sort(Comparator.comparing(Person::company));
-
         data.blue.sort(Comparator.comparing(Person::company));
-
         data.indigo.sort(Comparator.comparing(Person::company));
-
         data.violet.sort(Comparator.comparing(Person::company));
-
     }
 
 
-    private void sortDate() {
+    private void sortDate()
+    {
 
         data.red.sort(Comparator.comparing(Person::date));
-
         data.orange.sort(Comparator.comparing(Person::date));
-
         data.yellow.sort(Comparator.comparing(Person::date));
-
         data.green.sort(Comparator.comparing(Person::date));
-
         data.blue.sort(Comparator.comparing(Person::date));
-
         data.indigo.sort(Comparator.comparing(Person::date));
-
         data.violet.sort(Comparator.comparing(Person::date));
-
     }
 
-    private void populate(List<Person> color, StringBuilder temp) {
-        for (Person person : color) {
-
+    private void populate(List<Person> color, StringBuilder temp)
+    {
+        for (Person person : color)
+        {
             temp.append("Date: ").append(person.date()).append("\n");
             temp.append("Name: ").append(person.name()).append("\n");
             temp.append("Company: ").append(person.company()).append("\n");
             temp.append("Color: ").append(person.color()).append("\n");
             temp.append("\n");
-
-
         }
-
     }
 
 
-    private boolean toggle(TextArea text, TextArea count, String color, List<Person> people, boolean colorBool) {
-        if (data == null) {
-            return false;
-        }
+    private void toggle(TextArea text, TextArea count, String color, List<Person> people) {
 
-        text.clear();
-        count.setText("Count: 0");
-
-        if (!colorBool) {
+        if(text.getText().isEmpty())
+        {
             print(text, count, color, people);
         }
-        return !colorBool;
+        else {
+            text.clear();
+            count.setText("Count: 0");
+        }
+
+
 
     }
 
-    private void print(TextArea text, TextArea count, String color, List<Person> people) {
+    private void print(TextArea text, TextArea count, String color, List<Person> people)
+    {
         StringBuilder temp = new StringBuilder();
-
         text.setStyle("-fx-text-inner-color: " + color + ";");
         count.setText("Count: " + people.size());
         populate(people, temp);
@@ -293,123 +194,146 @@ public class Controller {
 
 
     @FXML
-    public void toggleRed() {
-        redBool = toggle(textArea, count, "red", data.red, redBool);
-
+    public void toggleRed()
+    {
+        toggle(textArea, count, "red", data.red);
     }
 
-    private void printRed() {
+    private void printRed()
+    {
         print(textArea, count, "red", data.red);
-
     }
-
 
     @FXML
-    private void toggleOrange() {
-        orangeBool = toggle(textArea2, count2, "orange", data.orange, orangeBool);
+    private void toggleOrange()
+    {
+        toggle(textArea2, count2, "orange", data.orange);
     }
 
-    private void printOrange() {
+    private void printOrange()
+    {
         print(textArea2, count2, "orange", data.orange);
     }
 
     @FXML
-    private void toggleYellow() {
-        yellowBool = toggle(textArea3, count3, "yellow", data.yellow, yellowBool);
+    private void toggleYellow()
+    {
+        toggle(textArea3, count3, "yellow", data.yellow);
     }
 
-    private void printYellow() {
+    private void printYellow()
+    {
         print(textArea3, count3, "yellow", data.yellow);
     }
 
     @FXML
-    private void toggleGreen() {
-        greenBool = toggle(textArea4, count4, "green", data.green, greenBool);
-
+    private void toggleGreen()
+    {
+        toggle(textArea4, count4, "green", data.green);
     }
 
-    private void printGreen() {
+    private void printGreen()
+    {
         print(textArea4, count4, "green", data.green);
-
     }
 
     @FXML
-    private void toggleBlue() {
-        blueBool = toggle(textArea5, count5, "blue", data.blue, blueBool);
-
+    private void toggleBlue()
+    {
+        toggle(textArea5, count5, "blue", data.blue);
     }
 
-    private void printBlue() {
+    private void printBlue()
+    {
         print(textArea5, count5, "blue", data.blue);
     }
 
     @FXML
-    private void toggleIndigo() {
-        indigoBool = toggle(textArea6, count6, "indigo", data.indigo, indigoBool);
+    private void toggleIndigo()
+    {
+        toggle(textArea6, count6, "indigo", data.indigo);
     }
 
-    private void printIndigo() {
+    private void printIndigo()
+    {
         print(textArea6, count6, "indigo", data.indigo);
-
     }
 
     @FXML
-    private void toggleViolet() {
-        violetBool = toggle(textArea7, count7, "violet", data.violet, violetBool);
-
+    private void toggleViolet()
+    {
+        toggle(textArea7, count7, "violet", data.violet);
     }
 
-    private void printViolet() {
+    private void printViolet()
+    {
         print(textArea7, count7, "violet", data.violet);
-
     }
 
 
     @FXML
-    private void orderName() {
-
+    private void orderName()
+    {
         sortName();
-        toggleAllColors();
-
-
+        checkToggle();
     }
 
-    @FXML
-    private void orderCompany() {
 
+
+    @FXML
+    private void orderCompany()
+    {
         sortCompany();
-        toggleAllColors();
-
+        checkToggle();
     }
 
     @FXML
-    private void orderDate() {
-
+    private void orderDate()
+    {
         sortDate();
-        toggleAllColors();
+        checkToggle();
+    }
+
+    private void printAllColors() {
+
+            printRed();
+            printOrange();
+            printYellow();
+            printGreen();
+            printBlue();
+            printIndigo();
+            printViolet();
 
     }
 
-    private void toggleAllColors() {
-        if (redBool) {
+    private void checkToggle()
+    {
+        if(!textArea.getText().isEmpty())
+        {
             printRed();
         }
-        if (orangeBool) {
+        if(!textArea2.getText().isEmpty())
+        {
             printOrange();
         }
-        if (yellowBool) {
+        if(!textArea3.getText().isEmpty())
+        {
             printYellow();
         }
-        if (greenBool) {
+        if(!textArea4.getText().isEmpty())
+        {
             printGreen();
         }
-        if (blueBool) {
+        if(!textArea5.getText().isEmpty())
+        {
             printBlue();
         }
-        if (indigoBool) {
+        if(!textArea6.getText().isEmpty())
+        {
             printIndigo();
         }
-        if (violetBool) {
+        if(!textArea7.getText().isEmpty())
+        {
             printViolet();
         }
     }
