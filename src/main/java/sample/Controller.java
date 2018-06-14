@@ -3,17 +3,12 @@ package sample;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.fxml.FXML;
-
-
-import java.io.File;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 
 
-public class Controller
-{
+public class Controller {
     @FXML
     Button royB;
 
@@ -81,11 +76,12 @@ public class Controller
     TextArea count7;
 
 
+    private Data data;
 
 
     @FXML
-    public void initialize()
-    {
+    public void initialize() {
+        data = Data.importData();
         textArea.setWrapText(true);
         textArea2.setWrapText(true);
         textArea3.setWrapText(true);
@@ -98,11 +94,8 @@ public class Controller
     }
 
 
-
-
     @FXML
-    private void clearAll()
-    {
+    private void clearAll() {
         textArea.clear();
         textArea2.clear();
         textArea3.clear();
@@ -114,17 +107,12 @@ public class Controller
         count2.clear();
         count3.clear();
         count4.clear();
-        count5 .clear();
+        count5.clear();
         count6.clear();
         count7.clear();
     }
 
 
-
-
-    private boolean nameBool ;
-    private boolean companyBool;
-    private boolean dateBool;
     private boolean redBool = false;
     private boolean orangeBool = false;
     private boolean yellowBool = false;
@@ -134,80 +122,70 @@ public class Controller
     private boolean violetBool = false;
 
 
-
     @FXML
-    public void printWhole()
-    {
+    public void printWhole() {
         clearAll();
-        Data newData = new Data();
-        newData.importData();
 
         StringBuilder temp = new StringBuilder();
 
         textArea.setStyle("-fx-text-inner-color: red;");
-        count.setText("Count: " + newData.red.size());
+        count.setText("Count: " + data.red.size());
 
-            populate(newData.red, temp);
+        populate(data.red, temp);
 
-            textArea.setText(temp.toString());
-            temp.setLength(0);
+        textArea.setText(temp.toString());
+        temp.setLength(0);
 
 
         textArea2.setStyle("-fx-text-inner-color: orange;");
-        count2.setText("Count: " + newData.orange.size());
+        count2.setText("Count: " + data.orange.size());
 
-            populate(newData.orange, temp);
+        populate(data.orange, temp);
 
-            textArea2.setText(temp.toString());
-            temp.setLength(0);
-
+        textArea2.setText(temp.toString());
+        temp.setLength(0);
 
 
         textArea3.setStyle("-fx-text-inner-color: yellow;");
-        count3.setText("Count: " + newData.yellow.size());
+        count3.setText("Count: " + data.yellow.size());
 
-            populate(newData.yellow, temp);
-            textArea3.setText(temp.toString());
-            temp.setLength(0);
-
+        populate(data.yellow, temp);
+        textArea3.setText(temp.toString());
+        temp.setLength(0);
 
 
         textArea4.setStyle("-fx-text-inner-color: green;");
-        count4.setText("Count: " + newData.green.size());
+        count4.setText("Count: " + data.green.size());
 
-            populate(newData.green, temp);
+        populate(data.green, temp);
 
-            textArea4.setText(temp.toString());
-            temp.setLength(0);
-
+        textArea4.setText(temp.toString());
+        temp.setLength(0);
 
 
         textArea5.setStyle("-fx-text-inner-color: blue");
-        count5.setText("Count: " + newData.blue.size());
+        count5.setText("Count: " + data.blue.size());
 
-            populate(newData.blue, temp);
+        populate(data.blue, temp);
 
-            textArea5.setText(temp.toString());
-            temp.setLength(0);
-
+        textArea5.setText(temp.toString());
+        temp.setLength(0);
 
 
         textArea6.setStyle("-fx-text-inner-color: indigo;");
-        count6.setText("Count: " + newData.indigo.size());
+        count6.setText("Count: " + data.indigo.size());
 
-            populate(newData.indigo, temp);
+        populate(data.indigo, temp);
 
-            textArea6.setText(temp.toString());
-            temp.setLength(0);
-
+        textArea6.setText(temp.toString());
+        temp.setLength(0);
 
 
         textArea7.setStyle("-fx-text-inner-color: violet;");
-        count7.setText("Count: " + newData.violet.size());
+        count7.setText("Count: " + data.violet.size());
 
-            populate(newData.violet, temp);
-            textArea7.setText(temp.toString());
-
+        populate(data.violet, temp);
+        textArea7.setText(temp.toString());
 
 
         redBool = true;
@@ -221,29 +199,61 @@ public class Controller
 
     }
 
-    private void sortName(List<Person> color) {
-        for (int i = 0; i < color.size(); i++) {
-            Collections.sort(color, Comparator.comparing(Person::name));
-        }
+    private void sortName() {
+        data.red.sort(Comparator.comparing(Person::name));
+
+        data.orange.sort(Comparator.comparing(Person::name));
+
+        data.yellow.sort(Comparator.comparing(Person::name));
+
+        data.green.sort(Comparator.comparing(Person::name));
+
+        data.blue.sort(Comparator.comparing(Person::name));
+
+        data.indigo.sort(Comparator.comparing(Person::name));
+
+        data.violet.sort(Comparator.comparing(Person::name));
+
     }
 
-    private void sortCompany(List<Person> color) {
-        for (int i = 0; i < color.size(); i++) {
-            Collections.sort(color, Comparator.comparing(Person::company));
-        }
+    private void sortCompany() {
+        data.red.sort(Comparator.comparing(Person::company));
+
+        data.orange.sort(Comparator.comparing(Person::company));
+
+        data.yellow.sort(Comparator.comparing(Person::company));
+
+        data.green.sort(Comparator.comparing(Person::company));
+
+        data.blue.sort(Comparator.comparing(Person::company));
+
+        data.indigo.sort(Comparator.comparing(Person::company));
+
+        data.violet.sort(Comparator.comparing(Person::company));
+
     }
 
 
-    private void sortDate(List<Person> color)
-    {
-        for (int i = 0; i < color.size(); i++)
-        {
-            Collections.sort(color, Comparator.comparing(Person::date));
-        }
+    private void sortDate() {
+
+        data.red.sort(Comparator.comparing(Person::date));
+
+        data.orange.sort(Comparator.comparing(Person::date));
+
+        data.yellow.sort(Comparator.comparing(Person::date));
+
+        data.green.sort(Comparator.comparing(Person::date));
+
+        data.blue.sort(Comparator.comparing(Person::date));
+
+        data.indigo.sort(Comparator.comparing(Person::date));
+
+        data.violet.sort(Comparator.comparing(Person::date));
+
     }
 
     private void populate(List<Person> color, StringBuilder temp) {
-        for(Person person: color) {
+        for (Person person : color) {
 
             temp.append("Date: ").append(person.date()).append("\n");
             temp.append("Name: ").append(person.name()).append("\n");
@@ -257,447 +267,154 @@ public class Controller
     }
 
 
-    @FXML
-    public void printRed()
-    {
-        textArea.clear();
-        Data newData = new Data();
-        newData.importData();
+    private boolean toggle(TextArea text, TextArea count, String color, List<Person> people, boolean colorBool) {
+        if (data == null) {
+            return false;
+        }
+
+        text.clear();
+        count.setText("Count: 0");
+
+        if (!colorBool) {
+            print(text, count, color, people);
+        }
+        return !colorBool;
+
+    }
+
+    private void print(TextArea text, TextArea count, String color, List<Person> people) {
         StringBuilder temp = new StringBuilder();
 
-        if(!redBool) {
-            textArea.setStyle("-fx-text-inner-color: red;");
-            count.setText("Count: " + newData.red.size());
-            populate(newData.red, temp);
-            textArea.setText(temp.toString());
-            redBool = true;
-            nameBool = false;
-            companyBool = false;
-            dateBool = false;
-        }
-        else
-        {
-            redBool = false;
-        }
+        text.setStyle("-fx-text-inner-color: " + color + ";");
+        count.setText("Count: " + people.size());
+        populate(people, temp);
+        text.setText(temp.toString());
+    }
+
+
+    @FXML
+    public void toggleRed() {
+        redBool = toggle(textArea, count, "red", data.red, redBool);
+
+    }
+
+    private void printRed() {
+        print(textArea, count, "red", data.red);
+
+    }
+
+
+    @FXML
+    private void toggleOrange() {
+        orangeBool = toggle(textArea2, count2, "orange", data.orange, orangeBool);
+    }
+
+    private void printOrange() {
+        print(textArea2, count2, "orange", data.orange);
     }
 
     @FXML
-    public void toggleOrange()
-    {
-        textArea2.clear();
-        Data newData = new Data();
-        newData.importData();
-        StringBuilder temp2 = new StringBuilder();
+    private void toggleYellow() {
+        yellowBool = toggle(textArea3, count3, "yellow", data.yellow, yellowBool);
+    }
 
-        if(!orangeBool) {
-            textArea2.setStyle("-fx-text-inner-color: orange;");
-            count2.setText("Count: " + newData.orange.size());
-            populate(newData.orange, temp2);
-            textArea2.setText(temp2.toString());
-            orangeBool = true;
-            nameBool = false;
-            companyBool = false;
-            dateBool = false;
-        }
-        else
-        {
-            orangeBool = false;
-        }
+    private void printYellow() {
+        print(textArea3, count3, "yellow", data.yellow);
     }
 
     @FXML
-    public void printYellow() {
-        textArea3.clear();
-        Data newData = new Data();
-        newData.importData();
-        StringBuilder temp3 = new StringBuilder();
+    private void toggleGreen() {
+        greenBool = toggle(textArea4, count4, "green", data.green, greenBool);
 
-        if(!yellowBool) {
-            textArea3.setStyle("-fx-text-inner-color: yellow;");
-            count3.setText("Count: " + newData.yellow.size());
-            populate(newData.yellow, temp3);
-            textArea3.setText(temp3.toString());
-            yellowBool = true;
-            nameBool = false;
-            companyBool = false;
-            dateBool = false;
-        }
-        else
-        {
-            yellowBool = false;
-        }
     }
 
-    @FXML
-    public void printGreen ()
-    {
-        textArea4.clear();
-        Data newData = new Data();
-        newData.importData();
-        StringBuilder temp4 = new StringBuilder();
-
-        if(!greenBool) {
-            textArea4.setStyle("-fx-text-inner-color: green;");
-            count4.setText("Count: " + newData.green.size());
-            populate(newData.green, temp4);
-            textArea4.setText(temp4.toString());
-            greenBool = true;
-            nameBool = false;
-            companyBool = false;
-            dateBool = false;
-        }
-        else
-        {
-            greenBool = false;
-        }
+    private void printGreen() {
+        print(textArea4, count4, "green", data.green);
 
     }
 
     @FXML
-    public void printBlue ()
-    {
-        textArea5.clear();
-        Data newData = new Data();
-        newData.importData();
-        StringBuilder temp5 = new StringBuilder();
+    private void toggleBlue() {
+        blueBool = toggle(textArea5, count5, "blue", data.blue, blueBool);
 
-        if(!blueBool) {
-            textArea5.setStyle("-fx-text-inner-color: blue");
-            count5.setText("Count: " + newData.blue.size());
-            populate(newData.blue, temp5);
-            textArea5.setText(temp5.toString());
-            blueBool = true;
-            nameBool = false;
-            companyBool = false;
-            dateBool = false;
-        }
-        else
-        {
-            blueBool = false;
-        }
+    }
+
+    private void printBlue() {
+        print(textArea5, count5, "blue", data.blue);
+    }
+
+    @FXML
+    private void toggleIndigo() {
+        indigoBool = toggle(textArea6, count6, "indigo", data.indigo, indigoBool);
+    }
+
+    private void printIndigo() {
+        print(textArea6, count6, "indigo", data.indigo);
 
     }
 
     @FXML
-    public void printIndigo ()
-    {
-        textArea6.clear();
-        Data newData = new Data();
-        newData.importData();
-        StringBuilder temp6 = new StringBuilder();
+    private void toggleViolet() {
+        violetBool = toggle(textArea7, count7, "violet", data.violet, violetBool);
 
-        if(!indigoBool) {
-            textArea6.setStyle("-fx-text-inner-color: indigo;");
-            count6.setText("Count: " + newData.indigo.size());
-            populate(newData.indigo, temp6);
-            textArea6.setText(temp6.toString());
-            indigoBool = true;
-            nameBool = false;
-            companyBool = false;
-            dateBool = false;
-        }
-        else
-            {
-                indigoBool = false;
-            }
     }
 
-    @FXML
-    public void printVoilet ()
-    {
-        textArea7.clear();
-        Data newData = new Data();
-        newData.importData();
-        StringBuilder temp7 = new StringBuilder();
+    private void printViolet() {
+        print(textArea7, count7, "violet", data.violet);
 
-        if(!violetBool) {
-            textArea7.setStyle("-fx-text-inner-color: violet;");
-            count7.setText("Count: " + newData.violet.size());
-            populate(newData.violet, temp7);
-            textArea7.setText(temp7.toString());
-            violetBool = true;
-            nameBool = false;
-            companyBool = false;
-            dateBool = false;
-        }
-        else
-        {
-            violetBool = false;
-        }
     }
 
 
-
-
-
-
-
     @FXML
-    public void orderName()
-    {
+    private void orderName() {
 
-        if(!nameBool) {
-            printOrderedColors();
-            nameBool = true;
-            companyBool = false;
-            dateBool = false;
-        }
-        else if(nameBool)
-        {
-            printColors();
-            nameBool = false;
-            //companyBool = false;
-            //dateBool = false;
-        }
+        sortName();
+        toggleAllColors();
 
 
     }
 
     @FXML
-    public void orderCompany()
-    {
-        if(!companyBool){
-            printOrderedColors();
-        nameBool = false;
-        companyBool = true;
-        dateBool = false;
-        }
-        else if(companyBool)
-        {
-            printColors();
-        //nameBool = false;
-        companyBool = false;
-        //dateBool = false;
-        }
+    private void orderCompany() {
 
+        sortCompany();
+        toggleAllColors();
 
     }
 
-    private void printColors() {
+    @FXML
+    private void orderDate() {
+
+        sortDate();
+        toggleAllColors();
+
+    }
+
+    private void toggleAllColors() {
         if (redBool) {
-            redBool = false;
             printRed();
         }
         if (orangeBool) {
-            orangeBool = false;
-            toggleOrange();
+            printOrange();
         }
         if (yellowBool) {
-            yellowBool = false;
             printYellow();
         }
         if (greenBool) {
-            greenBool = false;
             printGreen();
         }
         if (blueBool) {
-            blueBool = false;
             printBlue();
         }
         if (indigoBool) {
-            indigoBool = false;
             printIndigo();
         }
         if (violetBool) {
-            violetBool = false;
-            printVoilet();
+            printViolet();
         }
-    }
-
-
-    @FXML
-    public void orderDate()
-    {
-        if(!dateBool) {
-            printOrderedColors();
-
-            nameBool = false;
-            companyBool = false;
-            dateBool = true;
-
-        }
-        else if(dateBool)
-        {
-            printColors();
-            //nameBool = false;
-            //companyBool = false;
-            dateBool = false;
-        }
-
-    }
-
-    private void printOrderedColors() {
-        if (redBool) {
-            printOrderedRed();
-        }
-        if (orangeBool) {
-            printOrderedOrange();
-        }
-        if (yellowBool) {
-            printOrderedYellow();
-        }
-        if (greenBool) {
-            printOrderedGreen();
-        }
-        if (blueBool) {
-            printOrderedBlue();
-        }
-        if (indigoBool) {
-            printOrderedIndigo();
-        }
-        if (violetBool) {
-            printOrderedViolet();
-        }
-    }
-
-
-    private void printOrderedRed()
-    {
-        Data newData = new Data();
-        newData.importData();
-        StringBuilder temp = new StringBuilder();
-        checkSortBools(newData.red);
-        textArea.setStyle("-fx-text-inner-color: red;");
-        count.setText("Count: " + newData.red.size());
-
-
-        populate(newData.red, temp);
-        textArea.setText(temp.toString());
-        redBool = true;
-
-    }
-
-    private void checkSortBools(List<Person> color) {
-
-        if(!nameBool )
-        {
-            sortName(color);
-
-        }
-        else if(!companyBool)
-        {
-            sortCompany(color);
-
-        }
-        else if(!dateBool)
-        {
-            sortDate(color);
-
-        }
-    }
-
-    private void printOrderedOrange()
-    {
-        Data newData = new Data();
-        newData.importData();
-        StringBuilder temp = new StringBuilder();
-        checkSortBools(newData.orange);
-
-        textArea2.setStyle("-fx-text-inner-color: orange;");
-        count.setText("Count: " + newData.orange.size());
-
-
-        populate(newData.orange, temp);
-        textArea2.setText(temp.toString());
-        orangeBool = true;
-
-    }
-
-
-    private void printOrderedYellow()
-    {
-        Data newData = new Data();
-        newData.importData();
-        StringBuilder temp = new StringBuilder();
-        checkSortBools(newData.yellow);
-
-        textArea3.setStyle("-fx-text-inner-color: yellow;");
-        count.setText("Count: " + newData.yellow.size());
-
-
-        populate(newData.yellow, temp);
-        textArea3.setText(temp.toString());
-        yellowBool = true;
-
-    }
-
-
-
-    private void printOrderedGreen()
-    {
-        Data newData = new Data();
-        newData.importData();
-        StringBuilder temp = new StringBuilder();
-        checkSortBools(newData.green);
-
-        textArea4.setStyle("-fx-text-inner-color: green;");
-        count.setText("Count: " + newData.green.size());
-
-
-        populate(newData.green, temp);
-        textArea4.setText(temp.toString());
-        greenBool = true;
-
-    }
-
-
-
-
-    private void printOrderedBlue()
-    {
-        Data newData = new Data();
-        newData.importData();
-        StringBuilder temp = new StringBuilder();
-        checkSortBools(newData.blue);
-
-        textArea5.setStyle("-fx-text-inner-color: blue;");
-        count.setText("Count: " + newData.blue.size());
-
-
-        populate(newData.blue, temp);
-        textArea5.setText(temp.toString());
-        blueBool = true;
-
-    }
-
-
-
-
-    private void printOrderedIndigo()
-    {
-        Data newData = new Data();
-        newData.importData();
-        StringBuilder temp = new StringBuilder();
-        checkSortBools(newData.indigo);
-
-        textArea6.setStyle("-fx-text-inner-color: indigo;");
-        count.setText("Count: " + newData.indigo.size());
-
-
-        populate(newData.indigo, temp);
-        textArea6.setText(temp.toString());
-        indigoBool = true;
-
-    }
-
-
-
-    private void printOrderedViolet()
-    {
-        Data newData = new Data();
-        newData.importData();
-        StringBuilder temp = new StringBuilder();
-        checkSortBools(newData.violet);
-
-        textArea7.setStyle("-fx-text-inner-color: violet;");
-        count7.setText("Count: " + newData.violet.size());
-
-
-        populate(newData.violet, temp);
-        textArea7.setText(temp.toString());
-        violetBool = true;
-
     }
 }
+
+
 
 
