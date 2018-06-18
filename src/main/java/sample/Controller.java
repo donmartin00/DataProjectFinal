@@ -7,7 +7,9 @@ import java.util.Comparator;
 import java.util.List;
 
 
-
+/**
+ * Most of the buttons appeared in the gui are named and initialized first
+ */
 public class Controller {
     @FXML
     Button royB;
@@ -78,7 +80,9 @@ public class Controller {
 
     private Data data;
 
-
+    /**
+     * When the gui is initialized all text is wrapped
+     */
     @FXML
     public void initialize() {
         data = Data.importData();
@@ -93,7 +97,9 @@ public class Controller {
 
     }
 
-
+    /**
+     * All text boxes will be cleared
+     */
     @FXML
     private void clearAll() {
         textArea.clear();
@@ -112,7 +118,9 @@ public class Controller {
         count7.clear();
     }
 
-
+    /**
+     * printWhole is used by the "ROY GBIV" button and will print out every single arraylist at once
+     */
     @FXML
     public void printWhole()
     {
@@ -120,6 +128,10 @@ public class Controller {
         printAllColors();
     }
 
+
+    /**
+     * sortName, sortCompany, sortDate all do the same thing in which they sort the individual arraylists by the other attributes, either by name, company, or color
+     */
     private void sortName()
     {
         data.red.sort(Comparator.comparing(Person::name));
@@ -155,6 +167,11 @@ public class Controller {
         data.violet.sort(Comparator.comparing(Person::date));
     }
 
+    /**
+     * Helper method for the print methods in the controller class
+     * @param color
+     * @param temp
+     */
     private void populate(List<Person> color, StringBuilder temp)
     {
         for (Person person : color)
@@ -168,6 +185,13 @@ public class Controller {
     }
 
 
+    /**
+     * This is a toggle method to check if there is anything in the text areas, if there is not and the button is clicked, then it will print the data, otherwise it will clear it
+     * @param text
+     * @param count
+     * @param color
+     * @param people
+     */
     private void toggle(TextArea text, TextArea count, String color, List<Person> people) {
 
         if(text.getText().isEmpty())
@@ -183,6 +207,13 @@ public class Controller {
 
     }
 
+    /**
+     * prints a specific arraylist
+     * @param text
+     * @param count
+     * @param color
+     * @param people
+     */
     private void print(TextArea text, TextArea count, String color, List<Person> people)
     {
         StringBuilder temp = new StringBuilder();
@@ -193,6 +224,9 @@ public class Controller {
     }
 
 
+    /**
+     * Individual toggle and prints incase there is a case where we have to single an array out or only print/sort a few arrays
+     */
     @FXML
     public void toggleRed()
     {
@@ -271,6 +305,9 @@ public class Controller {
     }
 
 
+    /**
+     * orderName, orderCompany, orderDate are the methods used to actually sort the arraylists and they will call the helper methods and also check the toggles so only the arraylists you want printed are shown
+     */
     @FXML
     private void orderName()
     {
@@ -294,6 +331,9 @@ public class Controller {
         checkToggle();
     }
 
+    /**
+     * This prints all colors, NOT sorted
+     */
     private void printAllColors() {
 
             printRed();
@@ -306,6 +346,9 @@ public class Controller {
 
     }
 
+    /**
+     * Helper method for the "order" sorts. Checks to see what text areas are empty and which ones need to be reprinted 
+     */
     private void checkToggle()
     {
         if(!textArea.getText().isEmpty())

@@ -29,13 +29,13 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Button fx:id="redB" layoutX="106.0" layoutY="76.0" mnemonicParsing="false" onAction="#printRed" style="-fx-background-color: red;" text="Red" textFill="WHITE" />
+        <Button fx:id="redB" layoutX="106.0" layoutY="76.0" mnemonicParsing="false" onAction="#toggleRed" style="-fx-background-color: red;" text="Red" textFill="WHITE" />
         <Button fx:id="orangeB" layoutX="315.0" layoutY="76.0" mnemonicParsing="false" onAction="#toggleOrange" style="-fx-background-color: orange;" text="Orange" textFill="WHITE" />
-        <Button fx:id="yellowB" layoutX="538.0" layoutY="76.0" mnemonicParsing="false" onAction="#printYellow" style="-fx-background-color: yellow;" text="Yellow" textFill="WHITE" />
-        <Button fx:id="greenB" layoutX="760.0" layoutY="76.0" mnemonicParsing="false" onAction="#printGreen" style="-fx-background-color: green;" text="Green" textFill="WHITE" />
-        <Button fx:id="blueB" layoutX="986.0" layoutY="76.0" mnemonicParsing="false" onAction="#printBlue" style="-fx-background-color: blue;" text="Blue" textFill="WHITE" />
-        <Button fx:id="indigoB" layoutX="1200.0" layoutY="76.0" mnemonicParsing="false" onAction="#printIndigo" style="-fx-background-color: indigo;" text="Indigo" textFill="WHITE" />
-        <Button fx:id="voiletB" layoutX="1418.0" layoutY="76.0" mnemonicParsing="false" onAction="#printVoilet" style="-fx-background-color: violet;" text="Violet" textFill="WHITE" />
+        <Button fx:id="yellowB" layoutX="538.0" layoutY="76.0" mnemonicParsing="false" onAction="#toggleYellow" style="-fx-background-color: yellow;" text="Yellow" textFill="WHITE" />
+        <Button fx:id="greenB" layoutX="760.0" layoutY="76.0" mnemonicParsing="false" onAction="#toggleGreen" style="-fx-background-color: green;" text="Green" textFill="WHITE" />
+        <Button fx:id="blueB" layoutX="986.0" layoutY="76.0" mnemonicParsing="false" onAction="#toggleBlue" style="-fx-background-color: blue;" text="Blue" textFill="WHITE" />
+        <Button fx:id="indigoB" layoutX="1200.0" layoutY="76.0" mnemonicParsing="false" onAction="#toggleIndigo" style="-fx-background-color: indigo;" text="Indigo" textFill="WHITE" />
+        <Button fx:id="voiletB" layoutX="1418.0" layoutY="76.0" mnemonicParsing="false" onAction="#toggleViolet" style="-fx-background-color: violet;" text="Violet" textFill="WHITE" />
         <TextArea fx:id="textArea" layoutX="18.0" layoutY="156.0" prefHeight="1335.0" prefWidth="220.0" style="-fx-font-style: red;">
             <font>
                 <Font size="12.0" />

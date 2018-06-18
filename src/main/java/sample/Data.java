@@ -7,6 +7,9 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * My model class that will return a new model - "Data" - which will have 7 different array lists differentiated by color
+ */
 class Data
 {
 
@@ -19,7 +22,9 @@ class Data
     ArrayList<Person> violet = new ArrayList<>();
 
 
-
+/**
+ * Read in the text file called "pleaseWork.txt"
+ */
     public static Data importData()
     {
         Scanner scan = null;
@@ -33,8 +38,12 @@ class Data
     }
 
 
-    //first method is to read the .txt file
-    //sort the information blocks into lists
+    /**
+     * This parses the data that was imported and puts all of the information into the correct arraylist s
+     * @param file
+     * @return
+     * @throws FileNotFoundException
+     */
     public static Data importData(File file) throws FileNotFoundException
     {
         Scanner scan = new Scanner(file);
